@@ -1,0 +1,28 @@
+# Runtime permission switches cannot be granted by this file.
+workers: 10
+rate_limit: 10.0
+timeout: 10.0
+max_hosts: 256
+max_operations: 5000
+scan_seconds: 600.0
+max_response_bytes: 262144
+max_redirects: 3
+checks: null
+user_agent: "VulnScanner/1.0 (authorized-testing-only)"
+# A path to a PEM CA bundle for a private lab, or null for Requests' CA bundle.
+ca_bundle: null
+# Conservative opt-in: unreadable or redirected robots.txt blocks content access.
+respect_robots: false
+# Handshake-only legacy probes never disable verification for HTTP requests.
+weak_tls_probes: true
+tls_expiry_days: 30
+# Optional owner-created public fixture; both fields must be configured together.
+# Use a generated /vulnscanner-canary-<hex>.txt file containing only its non-secret
+# vulnscanner-canary-<random> token. No private or operating-system files are probed.
+traversal_canary_path: null
+traversal_canary_token: null
+
+# Passive greeting read window; no service commands are transmitted.
+network_banner_seconds: 0.5
+# Optional pre-populated local NVD cache; scans never contact NVD automatically.
+cve_cache: null

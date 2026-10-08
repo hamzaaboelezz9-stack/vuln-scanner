@@ -1,0 +1,63 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  python:
+    name: Python ${{ matrix.python }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      # Full commit pins protect the workflow from mutable action tags.
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install
+        run: |
+          python -m pip install -r requirements-dev.txt 'setuptools>=77.0.3,<81'
+          python -m pip install --no-deps --no-build-isolation -e .
+          python -m pip check
+      - name: Lint, format and tests
+        run: |
+          ruff check scanner tests examples cli.py
+          ruff format --check scanner tests examples cli.py
+          python -m pytest -q
+      - name: Build source and wheel distributions
+        run: python -m build --no-isolation
+      - name: Installed wheel smoke test outside checkout
+        run: |
+          python -m venv /tmp/vulnscanner-wheel
+          /tmp/vulnscanner-wheel/bin/python -m pip install dist/*.whl
+          cd /tmp
+          /tmp/vulnscanner-wheel/bin/vulnscan --version
+          /tmp/vulnscanner-wheel/bin/vulnscan checks --no-color
+          /tmp/vulnscanner-wheel/bin/python -c 'from scanner.utils.resources import resource_path; from scanner.safety.policy import CloudRangePolicy; CloudRangePolicy.from_file(resource_path("policy/cloud-ranges.json"))'
+  container:
+    name: Non-root container smoke test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Validate Compose and build
+        run: |
+          docker compose --profile lab config --quiet
+          docker compose build scanner
+      - name: Verify entry point, UID and bundled resources
+        run: |
+          docker compose run --rm scanner --version
+          docker compose run --rm scanner checks --no-color
+          docker compose run --rm --entrypoint python scanner -c 'import os; from scanner.utils.resources import resource_path; from scanner.safety.policy import CloudRangePolicy; assert os.getuid() == 10001; CloudRangePolicy.from_file(resource_path("policy/cloud-ranges.json"))'

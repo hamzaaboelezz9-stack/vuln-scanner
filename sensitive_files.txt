@@ -1,0 +1,13 @@
+# HEAD-only metadata checks. Bodies are never requested.
+/.env
+/.git/config
+/.git/HEAD
+/config.json
+/config.yml
+/config.yaml
+/web.config
+/docker-compose.yml
+/backup.zip
+/backup.sql
+/database.sql
+/settings.py

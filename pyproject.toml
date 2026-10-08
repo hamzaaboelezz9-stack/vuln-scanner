@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77.0.3,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "authorized-vulnscanner"
+version = "0.6.0"
+description = "Authorization-first web/network scanner with bounded probes and offline security reports"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["dnspython==2.8.0", "requests==2.34.2", "urllib3==2.8.0", "PyYAML==6.0.3", "cryptography==46.0.0", "rich==15.0.0", "Jinja2==3.1.6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.4.2,<9", "ruff>=0.13.3,<0.14", "build>=1.3.0,<2", "jsonschema==4.26.0"]
+
+[project.scripts]
+vulnscan = "scanner.cli:main"
+vulnscan-report = "scanner.reporting.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["scanner*"]
+
+[tool.setuptools.package-data]
+"scanner.reporting" = ["templates/*.html", "templates/*.css"]
+
+[tool.setuptools.data-files]
+"share/vulnscanner/policy" = ["data/policy/cloud-ranges.json"]
+"share/vulnscanner/ports" = ["data/ports/common.json"]
+"share/vulnscanner/fingerprints" = ["data/fingerprints/services.json"]
+"share/vulnscanner/wordlists" = ["data/wordlists/sensitive_files.txt", "data/wordlists/common_dirs.txt", "data/wordlists/xss_payloads.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

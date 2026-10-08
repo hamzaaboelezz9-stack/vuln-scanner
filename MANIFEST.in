@@ -1,0 +1,12 @@
+include requirements*.txt allowlist.txt SECURITY.md ETHICS.md NOTICE.md
+include GITHUB_DESCRIPTION.txt .gitignore SOURCEBOOK.md
+include config.yaml cli.py Dockerfile docker-compose.yml .dockerignore .env.example
+include CONTRIBUTING.md CHANGELOG.md
+recursive-include .github *.yml
+recursive-include docs *.md *.json *.html *.png
+recursive-include scanner/reporting/templates *.html *.css
+recursive-include examples *.py
+recursive-include data *.json *.txt
+recursive-include tests *.py
+prune releases
+global-exclude *.py[cod] __pycache__

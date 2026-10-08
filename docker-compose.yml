@@ -1,0 +1,60 @@
+name: vulnscanner
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: authorized-vulnscanner:0.6.0
+    init: true
+    read_only: true
+    user: "10001:10001"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    mem_limit: 512m
+    pids_limit: 128
+    stdin_open: true
+    restart: "no"
+    environment:
+      VULNSCAN_STATE_DIR: /var/lib/vulnscanner
+    volumes:
+      - scanner-state:/var/lib/vulnscanner
+      - scanner-reports:/reports
+      - ./allowlist.txt:/app/allowlist.txt:ro
+      - ./config.yaml:/app/config.yaml:ro
+    networks:
+      - default
+      - lab
+    command: ["--help"]
+
+  # Opt-in deliberately vulnerable lab. Never expose this service publicly.
+  juice-shop:
+    profiles: [lab]
+    image: bkimminich/juice-shop:v20.2.0@sha256:8739101ade29358abb5469ee66ae78e582c97ed0a5543a4ad102e5fa5193526b
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 1g
+    pids_limit: 256
+    restart: "no"
+    ports:
+      - "127.0.0.1:${JUICE_SHOP_PORT:-3000}:3000"
+    networks:
+      lab:
+        aliases: [lab.local]
+    healthcheck:
+      test: [CMD, /nodejs/bin/node, -e, "require('http').get('http://127.0.0.1:3000/',r=>{r.resume();process.exit(r.statusCode===200?0:1)}).on('error',()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+
+volumes:
+  scanner-state:
+  scanner-reports:
+
+networks:
+  default: {}
+  lab:
+    internal: true

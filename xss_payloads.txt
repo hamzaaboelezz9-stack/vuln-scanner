@@ -1,0 +1,2 @@
+# Inert metacharacters only; {marker} is a fresh random alphanumeric nonce.
+{marker}_"'<> &

@@ -1,0 +1,1 @@
+Authorization-first Python web and TCP security scanner with bounded probes, passive fingerprints, offline CVE candidates, and HTML, SARIF and Markdown reports.

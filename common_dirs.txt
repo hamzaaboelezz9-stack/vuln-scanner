@@ -1,0 +1,4 @@
+# Small origin-root directory list; no recursive crawling.
+/admin/
+/uploads/
+/backup/

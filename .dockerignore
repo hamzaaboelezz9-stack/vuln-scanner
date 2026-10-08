@@ -1,0 +1,13 @@
+*
+!Dockerfile
+!pyproject.toml
+!README.md
+!LICENSE
+!config.yaml
+!allowlist.txt
+!scanner/
+!scanner/**
+!data/
+!data/**
+**/__pycache__
+**/*.pyc
