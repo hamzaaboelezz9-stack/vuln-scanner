@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="{{ csp }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>VulnScanner assessment — {{ document.target }}</title>
+<style>{{ stylesheet }}</style>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to assessment</a>
+<header class="masthead">
+  <a class="brand" href="#overview"><span class="brand-symbol" aria-hidden="true">V</span> VULNSCANNER</a>
+  <div class="masthead-meta">SECURITY ASSESSMENT <span class="separator">/</span> v{{ version }}</div>
+</header>
+<main>
+<section class="hero" id="overview" aria-labelledby="report-title">
+  <div class="eyebrow">AUTHORIZED TESTING · EVIDENCE FIRST</div>
+  <div class="hero-grid"><div>
+    <h1 id="report-title">A clearer view of<br>your attack surface.</h1>
+    <p class="target">{{ document.target }}</p>
+  </div><div class="hero-status">
+    <span class="status-label">ASSESSMENT COVERAGE</span>
+    <strong>{{ 'Complete' if document.complete else 'Partial / unfinished' }}</strong>
+    <p>{{ document.coverage_counts.complete }} of {{ document.outcomes | length }} selected checks completed</p>
+    <div class="status-label">HIGHEST REPORTED SEVERITY</div>
+    <strong class="severity-{{ document.findings[0].severity.value if document.findings else 'info' }}">{{ document.highest_severity }}</strong>
+  </div></div>
+  <div class="hero-footer"><span>{{ document.mode | upper }} ASSESSMENT</span><span>{{ document.started_at.strftime('%d %b %Y · %H:%M UTC') }}</span><span>Scan {{ document.scan_id }}</span></div>
+</section>
+<nav class="section-nav" aria-label="Report sections"><a href="#summary">Summary</a><a href="#coverage">Scope &amp; coverage</a><a href="#surface">Attack surface</a><a href="#findings">Findings</a><a href="#next">Next steps</a></nav>
+<section class="section" id="summary">
+  <div class="section-heading"><div><span class="eyebrow">01 / OVERVIEW</span><h2>Executive summary</h2></div><span class="small-label">{{ document.findings | length }} recorded findings</span></div>
+  <p class="lead">{{ document.summary }}</p>
+  <div class="counts" aria-label="Findings by severity">{% for severity, count in document.counts.items() %}<div class="count-card severity-{{ severity }}"><span>{{ severity | capitalize }}</span><strong>{{ count }}</strong></div>{% endfor %}</div>
+  <div class="notice"><strong>Source context</strong><p>{{ document.purpose }}</p><p>Imported scan data is not authenticated. A report does not independently verify ownership, authorization, exploitability or compliance.</p></div>
+</section>
+<section class="section" id="coverage">
+  <div class="section-heading"><div><span class="eyebrow">02 / BOUNDARIES</span><h2>Scope &amp; coverage</h2></div></div>
+  <div class="metadata"><div><span>Started · UTC</span><strong>{{ document.started_at.isoformat() }}</strong></div><div><span>Ended · UTC</span><strong>{{ document.ended_at.isoformat() if document.ended_at else 'Not recorded' }}</strong></div><div><span>Declared approved addresses</span><pre>{{ document.addresses | join('\n') or 'None recorded' }}</pre></div><div><span>Declared approved ports</span><pre>{{ document.ports | join(', ') or 'None recorded' }}</pre></div></div>
+  <div class="table-wrap"><table><caption>Selected check outcomes</caption><thead><tr><th scope="col">Check</th><th scope="col">Outcome</th><th scope="col">Explanation</th></tr></thead><tbody>{% for outcome in document.outcomes %}<tr><td class="mono">{{ outcome.check }}</td><td><span class="badge outcome-{{ outcome.status.value }}">{{ outcome.status.value }}</span></td><td>{{ outcome.reason or 'Completed selected check' }}</td></tr>{% else %}<tr><td colspan="3">No check coverage recorded. Security posture is undetermined.</td></tr>{% endfor %}</tbody></table></div>
+  <div class="operation-row">{% for kind, count in document.operations %}<span><strong>{{ count }}</strong> {{ kind }} operations</span>{% endfor %}</div>
+  <details class="settings"><summary>Recorded scan limits</summary><dl>{% for name, value in document.limits %}<dt>{{ name }}</dt><dd>{{ value }}</dd>{% endfor %}</dl></details>
+</section>
+<section class="section" id="surface">
+  <div class="section-heading"><div><span class="eyebrow">03 / INVENTORY</span><h2>Attack surface</h2></div></div>
+  {% if document.surface %}{% set surface = document.surface %}
+  <p>{{ surface.observed }} of {{ surface.planned }} host/port pairs observed. Passive advertisements are unverified. Timeouts do not prove a closed port or an absent host.</p>
+  <p class="small-label">Collection incomplete: {{ surface.incomplete }} · Collection failed: {{ surface.failed }} · Application bytes transmitted: 0</p>
+  <div class="table-wrap"><table><caption>Per-host socket outcomes</caption><thead><tr><th scope="col">Address</th><th scope="col">Response</th><th scope="col">State counts</th></tr></thead><tbody>{% for host in surface.hosts %}<tr><td class="mono">{{ host.address }}</td><td>{{ host.response }}</td><td>{% for state, count in host.counts %}{{ state }}: {{ count }}{% if not loop.last %}; {% endif %}{% endfor %}</td></tr>{% endfor %}</tbody></table></div>
+  <div class="table-wrap"><table><caption>Open and uncertain endpoints</caption><thead><tr><th scope="col">Endpoint</th><th scope="col">Socket state</th><th scope="col">Advertised identity</th><th scope="col">Greeting</th></tr></thead><tbody>{% for port in surface.opened + surface.uncertain %}<tr><td class="mono">{{ port.endpoint }}</td><td>{{ port.state.value }}</td><td>{% if port.service %}{{ port.service.protocol }}{% if port.service.product %} / {{ port.service.product }}{% endif %}{% if port.service.version %} / {{ port.service.version }}{% endif %}<span class="muted"> · unverified</span>{% else %}Unknown{% endif %}</td><td>{{ port.banner_state.value }}</td></tr>{% else %}<tr><td colspan="4">No open or uncertain endpoint records supplied.</td></tr>{% endfor %}</tbody></table></div>
+  <p class="small-label">Omitted inventory records: {{ surface.open_omitted }} open · {{ surface.uncertain_omitted }} uncertain.</p>
+  {% else %}<div class="notice"><p>Network inventory was not supplied. Web coverage is limited to the recorded target and selected checks; there is no inferred crawl or endpoint inventory.</p></div>{% endif %}
+</section>
+<section class="section" id="findings">
+  <div class="section-heading"><div><span class="eyebrow">04 / EVIDENCE</span><h2>Detailed findings</h2></div><span class="small-label">Ordered by recorded severity</span></div>
+  {% for entry in findings %}{% set finding = entry.finding %}
+  <details class="finding severity-border-{{ finding.severity.value }}" id="{{ entry.id }}" open>
+    <summary><span class="finding-id">{{ entry.id }}</span><span class="finding-title">{{ finding.title }}</span><span class="badge severity-{{ finding.severity.value }}">{{ finding.severity.value | capitalize }}</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">{{ finding.rule_id }}</span><span>{{ finding.confidence.value }}</span><span>CVSS v3.1: {% if finding.cvss %}{{ '%.1f' | format(finding.cvss.score) }}{% else %}Not scored{% endif %}</span></div>
+    {% if finding.cvss %}<p class="mono">{{ finding.cvss.vector }}</p>{% else %}<p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>{% endif %}
+    <h3>Description</h3><p class="preserve">{{ finding.description }}</p>
+    <h3>Evidence</h3><pre class="evidence">{{ entry.evidence }}</pre>
+    <h3>Remediation</h3><p class="preserve">{{ finding.remediation }}</p>
+    <h3>References</h3><ul class="references">{% for url in finding.references %}<li><a href="{{ url }}" rel="noopener noreferrer" target="_blank">{{ url }}</a></li>{% else %}<li>No reference supplied.</li>{% endfor %}</ul>
+    </div>
+  </details>{% else %}<div class="notice"><strong>No findings recorded</strong><p>This does not establish that the application is secure. Review coverage and complete a manual assessment.</p></div>{% endfor %}
+</section>
+<section class="section" id="next">
+  <div class="section-heading"><div><span class="eyebrow">05 / ACTION</span><h2>Recommended next steps</h2></div></div>
+  <div class="next-grid"><article><span class="step">01</span><h3>Validate &amp; prioritize</h3><p>Prioritize confirmed high-impact findings and verify potential issues before making remediation decisions.</p></article><article><span class="step">02</span><h3>Close coverage gaps</h3><p>Resolve skipped, inconclusive and failed checks. Rerun within the same authorized scope.</p></article><article><span class="step">03</span><h3>Retest &amp; assess</h3><p>Retest fixes and supplement automated checks with manual application assessment.</p></article></div>
+</section>
+</main>
+<footer class="footer"><span>VULNSCANNER / v{{ version }}</span><p>Assessment metadata may be sensitive. Review and redact before sharing. Generated offline; no scripts, telemetry or remote assets.</p></footer>
+</body>
+</html>

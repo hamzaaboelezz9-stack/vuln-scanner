@@ -1,0 +1,368 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "VulnScanner",
+          "version": "0.5.0",
+          "rules": [
+            {
+              "id": "network.open_port",
+              "shortDescription": {
+                "text": "TCP listener accepted a connection"
+              },
+              "help": {
+                "text": "Review whether the listener is required, bind private services to the intended interface, restrict ingress with host/network firewalls, and enforce service authentication and patching."
+              }
+            },
+            {
+              "id": "network.service_identity",
+              "shortDescription": {
+                "text": "Passive service identity advertised"
+              },
+              "help": {
+                "text": "Verify installed package versions and vendor patch/backport status through authorized administrative inventory. Restrict unnecessary greeting detail, while prioritizing patching and access control over banner hiding."
+              }
+            },
+            {
+              "id": "network.tcp_response",
+              "shortDescription": {
+                "text": "TCP response observed"
+              },
+              "help": {
+                "text": "Maintain an accurate asset inventory and limit network exposure to the intended trust zones. Verify address ownership and any middlebox responses with the operator."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "network.open_port",
+          "ruleIndex": 0,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "TCP listener accepted a connection: A TCP handshake completed on this approved address and port. An open listener alone is not a vulnerability or evidence of an unauthenticated application action. Service identity is assessed separately."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "ac7cd406c49f17bd321dd6afb0391cb0f387cd60eb63133df6d4358e5ff9100e"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "confirmed",
+            "evidence": {
+              "method": "TCP",
+              "endpoint": "tcp://127.0.0.1:52881",
+              "status_code": null,
+              "observations": [
+                "TCP connect succeeded.",
+                "No application bytes were transmitted."
+              ]
+            },
+            "remediation": "Review whether the listener is required, bind private services to the intended interface, restrict ingress with host/network firewalls, and enforce service authentication and patching.",
+            "references": [
+              "https://nmap.org/book/port-scanning.html"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tcp://127.0.0.1:52881"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "network.open_port",
+          "ruleIndex": 0,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "TCP listener accepted a connection: A TCP handshake completed on this approved address and port. An open listener alone is not a vulnerability or evidence of an unauthenticated application action. Service identity is assessed separately."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "b7169e6aa91b619f955909b261d1a28f1b2c82337330237530fa1cf6c783e493"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "confirmed",
+            "evidence": {
+              "method": "TCP",
+              "endpoint": "tcp://127.0.0.1:60907",
+              "status_code": null,
+              "observations": [
+                "TCP connect succeeded.",
+                "No application bytes were transmitted."
+              ]
+            },
+            "remediation": "Review whether the listener is required, bind private services to the intended interface, restrict ingress with host/network firewalls, and enforce service authentication and patching.",
+            "references": [
+              "https://nmap.org/book/port-scanning.html"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tcp://127.0.0.1:60907"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "network.service_identity",
+          "ruleIndex": 1,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "Passive service identity advertised: A greeting matched a bounded built-in signature. Banners can be spoofed and distribution packages may backport fixes. No login, HTTP request, database query or service command was sent. [Needs manual verification] for installed product/version and vulnerability applicability."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "5d1f60179e48160683947325f4ba0e4be31153e3433af300d7d601a443abb63f"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "observation",
+            "evidence": {
+              "method": "TCP",
+              "endpoint": "tcp://127.0.0.1:52881",
+              "status_code": null,
+              "observations": [
+                "Advertised protocol: smtp"
+              ]
+            },
+            "remediation": "Verify installed package versions and vendor patch/backport status through authorized administrative inventory. Restrict unnecessary greeting detail, while prioritizing patching and access control over banner hiding.",
+            "references": [
+              "https://nmap.org/book/port-scanning.html"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tcp://127.0.0.1:52881"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "network.service_identity",
+          "ruleIndex": 1,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "Passive service identity advertised: A greeting matched a bounded built-in signature. Banners can be spoofed and distribution packages may backport fixes. No login, HTTP request, database query or service command was sent. [Needs manual verification] for installed product/version and vulnerability applicability."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "b439a7a2c8bb2427a76c39443f7229d9a09f882f768adc853d7fcbef40e4be68"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "observation",
+            "evidence": {
+              "method": "TCP",
+              "endpoint": "tcp://127.0.0.1:60907",
+              "status_code": null,
+              "observations": [
+                "Advertised protocol: ssh",
+                "Advertised product: openssh",
+                "Advertised software version: 9.8p1"
+              ]
+            },
+            "remediation": "Verify installed package versions and vendor patch/backport status through authorized administrative inventory. Restrict unnecessary greeting detail, while prioritizing patching and access control over banner hiding.",
+            "references": [
+              "https://nmap.org/book/port-scanning.html"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tcp://127.0.0.1:60907"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "network.tcp_response",
+          "ruleIndex": 2,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "TCP response observed: A connect succeeded or was refused. This establishes a response from the address/path, possibly a firewall or middlebox, not proof of end-host identity. No ICMP/raw SYN packet or application command was sent."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "8c1edd2a72073e6364a0b04f2ca77a456f3dc08c7fec443dcb69ea63ae596daa"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "observation",
+            "evidence": {
+              "method": "TCP",
+              "endpoint": "tcp://127.0.0.1:38085",
+              "status_code": null,
+              "observations": [
+                "TCP outcome: connection-refused",
+                "Every authorized address remains eligible for selected-port probing regardless of this response."
+              ]
+            },
+            "remediation": "Maintain an accurate asset inventory and limit network exposure to the intended trust zones. Verify address ownership and any middlebox responses with the operator.",
+            "references": [
+              "https://nmap.org/book/port-scanning.html"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tcp://127.0.0.1:38085"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "vulnscanner": {
+          "scanId": "ac2fb2d5-1714-49f8-b559-02e68ad464bd",
+          "target": "127.0.0.1",
+          "mode": "net",
+          "purpose": "Measured synthetic loopback TCP fixture; banners are simulated, not verified installed services. No live NVD or Juice Shop assessment.",
+          "startedAt": "2026-10-06T13:36:31.667081+00:00",
+          "endedAt": "2026-10-06T13:36:31.886267+00:00",
+          "coverageComplete": false,
+          "highestReportedSeverity": "Info",
+          "severityCounts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "info": 5
+          },
+          "coverageCounts": {
+            "complete": 3,
+            "skipped": 1,
+            "inconclusive": 0,
+            "failed": 0
+          },
+          "coverage": [
+            {
+              "check": "cves",
+              "status": "skipped",
+              "reason": "No NVD cache configured; no external lookup was made."
+            },
+            {
+              "check": "discovery",
+              "status": "complete",
+              "reason": ""
+            },
+            {
+              "check": "ports",
+              "status": "complete",
+              "reason": ""
+            },
+            {
+              "check": "services",
+              "status": "complete",
+              "reason": ""
+            }
+          ],
+          "operations": {
+            "HTTP": 0,
+            "TCP": 3,
+            "TLS": 0
+          },
+          "limits": {
+            "max_hosts": 256,
+            "max_operations": 5000,
+            "max_redirects": 3,
+            "max_response_bytes": 262144,
+            "network_banner_seconds": 0.2,
+            "rate_limit": 10.0,
+            "respect_robots": false,
+            "scan_seconds": 600.0,
+            "timeout": 0.5,
+            "tls_expiry_days": 30,
+            "weak_tls_probes": true,
+            "workers": 10
+          },
+          "approvedScope": {
+            "addresses": [
+              "127.0.0.1"
+            ],
+            "ports": [
+              38085,
+              52881,
+              60907
+            ]
+          },
+          "attackSurface": {
+            "kind": "passive-tcp-connect-survey",
+            "planned_pairs": 3,
+            "observed_pairs": 3,
+            "incomplete": false,
+            "failed": false,
+            "hosts": [
+              {
+                "address": "127.0.0.1",
+                "tcp_response": "observed-or-middlebox",
+                "counts": {
+                  "open": 2,
+                  "connection-refused": 1,
+                  "no-response": 0,
+                  "unreachable": 0,
+                  "local-or-transport-error": 0
+                }
+              }
+            ],
+            "open_ports": [
+              {
+                "address": "127.0.0.1",
+                "port": 52881,
+                "state": "open",
+                "banner": "complete-line-or-eof",
+                "service": {
+                  "protocol": "smtp",
+                  "product": null,
+                  "advertised_version": null,
+                  "cpe_query": null,
+                  "identity_verified": false
+                }
+              },
+              {
+                "address": "127.0.0.1",
+                "port": 60907,
+                "state": "open",
+                "banner": "complete-line-or-eof",
+                "service": {
+                  "protocol": "ssh",
+                  "product": "openssh",
+                  "advertised_version": "9.8p1",
+                  "cpe_query": "cpe:2.3:a:openbsd:openssh:9.8:p1:*:*:*:*:*:*",
+                  "identity_verified": false
+                }
+              }
+            ],
+            "uncertain_ports": [],
+            "open_ports_omitted": 0,
+            "uncertain_ports_omitted": 0,
+            "application_bytes_sent": 0
+          }
+        }
+      }
+    }
+  ]
+}

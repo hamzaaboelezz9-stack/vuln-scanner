@@ -1,0 +1,48 @@
+{
+  "purpose": "Transport diagnostic only; no vulnerability checks were performed.",
+  "schema": "vulnscanner.result.v1",
+  "scan_id": "9594fee4-4546-454f-9414-914e0269369e",
+  "target": "http://127.0.0.1:39493",
+  "mode": "web",
+  "started_at": "2026-10-06T12:07:56.149098+00:00",
+  "ended_at": "2026-10-06T12:07:56.163302+00:00",
+  "counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 0
+  },
+  "findings": [],
+  "coverage": [
+    {
+      "check": "transport_diagnostic",
+      "status": "complete",
+      "reason": ""
+    }
+  ],
+  "operations": {
+    "HTTP": 1,
+    "TCP": 0,
+    "TLS": 0
+  },
+  "limits": {
+    "workers": 10,
+    "rate_limit": 10.0,
+    "timeout": 10.0,
+    "max_hosts": 256,
+    "max_operations": 5000,
+    "scan_seconds": 600.0,
+    "max_response_bytes": 262144,
+    "max_redirects": 3,
+    "respect_robots": false
+  },
+  "approved_scope": {
+    "addresses": [
+      "127.0.0.1"
+    ],
+    "ports": [
+      39493
+    ]
+  }
+}

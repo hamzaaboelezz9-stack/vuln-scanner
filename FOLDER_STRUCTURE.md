@@ -1,0 +1,185 @@
+# Complete folder structure
+
+Repository root: `vuln-scanner/`. Local caches, build artifacts and private reports are excluded.
+
+- `.dockerignore`
+- `.env.example`
+- `.github/`
+  - `dependabot.yml`
+  - `workflows/`
+    - `ci.yml`
+- `.gitignore`
+- `CHANGELOG.md`
+- `CONTRIBUTING.md`
+- `Dockerfile`
+- `ETHICS.md`
+- `GITHUB_DESCRIPTION.txt`
+- `LICENSE`
+- `MANIFEST.in`
+- `NOTICE.md`
+- `README.md`
+- `SECURITY.md`
+- `SOURCEBOOK.md`
+- `allowlist.txt`
+- `cli.py`
+- `config.yaml`
+- `data/`
+  - `fingerprints/`
+    - `services.json`
+  - `policy/`
+    - `cloud-ranges.json`
+  - `ports/`
+    - `common.json`
+  - `wordlists/`
+    - `common_dirs.txt`
+    - `sensitive_files.txt`
+    - `xss_payloads.txt`
+- `docker-compose.yml`
+- `docs/`
+  - `ARCHITECTURE.md`
+  - `CLI.md`
+  - `CLI_SAMPLE.json`
+  - `DEPLOYMENT.md`
+  - `DIAGNOSTIC_SAMPLE.json`
+  - `FILE_GUIDE.md`
+  - `FOLDER_STRUCTURE.md`
+  - `GITHUB.md`
+  - `JUICE_SHOP.md`
+  - `NETWORK_CHECKS.md`
+  - `NETWORK_SAMPLE.json`
+  - `PENTEST_CHECKLIST.md`
+  - `REPORTING.md`
+  - `TRANSPORTS.md`
+  - `VALIDATION.md`
+  - `WEB_CHECKS.md`
+  - `WEB_SAMPLE.json`
+  - `images/`
+    - `report-preview.png`
+  - `reports/`
+    - `cli-assessment.html`
+    - `cli-assessment.json`
+    - `cli-assessment.md`
+    - `network-assessment.html`
+    - `network-assessment.json`
+    - `network-assessment.md`
+    - `web-assessment.html`
+    - `web-assessment.json`
+    - `web-assessment.md`
+- `examples/`
+  - `authorize_scope.py`
+  - `network_checks.py`
+  - `report_result.py`
+  - `transport_diagnostic.py`
+  - `validate_sarif.py`
+  - `web_checks.py`
+- `pyproject.toml`
+- `requirements-dev.txt`
+- `requirements.txt`
+- `scanner/`
+  - `__init__.py`
+  - `checks/`
+    - `__init__.py`
+    - `base.py`
+    - `network/`
+      - `__init__.py`
+      - `common.py`
+      - `cves.py`
+      - `discovery.py`
+      - `ports.py`
+      - `services.py`
+      - `survey.py`
+    - `web/`
+      - `__init__.py`
+      - `common.py`
+      - `cookies.py`
+      - `cors.py`
+      - `disclosure.py`
+      - `files.py`
+      - `headers.py`
+      - `redirect.py`
+      - `sqli.py`
+      - `tls.py`
+      - `traversal.py`
+      - `xss.py`
+  - `cli.py`
+  - `core/`
+    - `__init__.py`
+    - `config.py`
+    - `cvss.py`
+    - `engine.py`
+    - `errors.py`
+    - `finding.py`
+    - `network.py`
+    - `result.py`
+    - `session.py`
+    - `target.py`
+    - `transport.py`
+  - `reporting/`
+    - `__init__.py`
+    - `cli.py`
+    - `console.py`
+    - `export.py`
+    - `html.py`
+    - `io.py`
+    - `json_export.py`
+    - `markdown.py`
+    - `model.py`
+    - `templates/`
+      - `report.css`
+      - `report.html`
+  - `safety/`
+    - `__init__.py`
+    - `authorization.py`
+    - `budget.py`
+    - `cloud_updates.py`
+    - `io_deadline.py`
+    - `policy.py`
+    - `probes.py`
+    - `rate_limit.py`
+    - `resolver.py`
+    - `state.py`
+  - `utils/`
+    - `__init__.py`
+    - `cve.py`
+    - `evidence.py`
+    - `fingerprints.py`
+    - `http.py`
+    - `logger.py`
+    - `ports.py`
+    - `resources.py`
+    - `wordlists.py`
+- `tests/`
+  - `__init__.py`
+  - `conftest.py`
+  - `generate_network_sample.py`
+  - `generate_web_sample.py`
+  - `lab.py`
+  - `network_lab.py`
+  - `report_support.py`
+  - `test_budget.py`
+  - `test_cli.py`
+  - `test_config.py`
+  - `test_cookies.py`
+  - `test_cors.py`
+  - `test_cve.py`
+  - `test_engine.py`
+  - `test_headers.py`
+  - `test_models.py`
+  - `test_network.py`
+  - `test_network_data.py`
+  - `test_policy.py`
+  - `test_rate_limit.py`
+  - `test_reporting_io.py`
+  - `test_reporting_model.py`
+  - `test_reporting_renderers.py`
+  - `test_resolver.py`
+  - `test_safety.py`
+  - `test_sarif_validation.py`
+  - `test_target.py`
+  - `test_transport.py`
+  - `test_web_discovery.py`
+  - `test_web_engine.py`
+  - `test_web_inputs.py`
+  - `test_web_tls.py`
+  - `web_lab.py`
+  - `web_support.py`

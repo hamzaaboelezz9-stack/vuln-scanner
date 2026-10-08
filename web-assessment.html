@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;none&#39;; style-src &#39;sha256-eAD9XJyDeu1W5YhGQ1Rf5bwq+vhntlbPCyrWho29Go0=&#39;; img-src &#39;none&#39;; connect-src &#39;none&#39;; font-src &#39;none&#39;; object-src &#39;none&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>VulnScanner assessment — http://127.0.0.1:45301</title>
+<style>:root{color-scheme:light dark;--bg:#f3f5f6;--paper:#fff;--ink:#17232f;--muted:#566674;--line:#dbe2e6;--navy:#0e2335;--cyan:#83dbc9;--critical:#a91833;--high:#b22a32;--medium:#95620a;--low:#1d6687;--info:#456173}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-underline-offset:4px}a:focus-visible,summary:focus-visible{outline:3px solid #347fbb;outline-offset:4px}main,.masthead,.footer{max-width:1180px;margin:auto}.masthead{display:flex;align-items:center;justify-content:space-between;padding:26px 28px}.brand{font-size:14px;font-weight:800;letter-spacing:2px;text-decoration:none;display:flex;align-items:center;gap:13px}.brand-symbol{display:grid;place-items:center;width:31px;height:34px;border:2px solid currentColor;border-radius:6px 6px 15px 15px;font-size:16px}.masthead-meta,.small-label,.status-label{font-size:12px;color:var(--muted)}.masthead-meta{letter-spacing:1px}.separator{padding:0 12px;color:#8595a0}.hero{background:var(--navy);color:#f5fafb;border-radius:16px;padding:40px 46px 22px;margin:0 24px}.eyebrow{font-size:10px;font-weight:750;letter-spacing:2px}.hero .eyebrow{color:var(--cyan)}.hero-grid{display:grid;grid-template-columns:1fr 270px;gap:45px;padding:23px 0 30px}h1{font-size:clamp(30px,4vw,49px);font-weight:650;line-height:1.15;letter-spacing:-1.8px;margin:0 0 20px}.target{font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#cbd9e0;overflow-wrap:anywhere;margin:0}.hero-status{border-left:1px solid #385064;padding-left:28px;align-self:center}.hero-status strong{display:block;font-size:23px;font-weight:600}.hero-status p{font-size:12px;color:#b9cbd7;margin:2px 0 20px}.hero-status .status-label{font-size:9px;color:#a9c0ce;letter-spacing:1.6px}.hero-status .severity-medium{color:#ffcf77}.hero-status .severity-high,.hero-status .severity-critical{color:#ffb4b4}.hero-status .severity-info,.hero-status .severity-low{color:#8bddcb}.hero-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid #385064;padding-top:18px;font:10px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#a8c0cf;overflow-wrap:anywhere}.section-nav{display:flex;gap:30px;padding:23px 48px;border-bottom:1px solid var(--line);font-size:12px;flex-wrap:wrap}.section-nav a{text-decoration:none;color:var(--muted)}.section-nav a:hover{color:var(--ink)}.section{margin:0 24px;padding:34px 22px;border-bottom:1px solid var(--line);scroll-margin-top:1rem}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:21px}.section-heading .eyebrow{color:var(--muted)}h2{margin:5px 0 0;font-size:25px;letter-spacing:-.7px;font-weight:650}h3{font-size:14px;margin:24px 0 8px}p{margin:10px 0 14px}.lead{font-size:16px;max-width:890px}.counts{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:23px 0}.count-card{background:var(--paper);border:1px solid var(--line);border-top:3px solid currentColor;padding:15px 20px;border-radius:8px}.count-card span{font-size:11px;font-weight:600}.count-card strong{display:block;font-size:32px;line-height:1.3;font-weight:650;color:var(--ink)}.severity-critical{color:var(--critical)}.severity-high{color:var(--high)}.severity-medium{color:var(--medium)}.severity-low{color:var(--low)}.severity-info{color:var(--info)}.notice{background:var(--paper);border:1px solid var(--line);border-left:3px solid #4b7787;padding:16px 21px;border-radius:5px;font-size:12px;color:var(--muted)}.notice strong{color:var(--ink)}.notice p:last-child{margin-bottom:0}.metadata{display:grid;grid-template-columns:1fr 1fr;gap:19px 32px;font-size:12px;margin-bottom:24px}.metadata span{display:block;color:var(--muted);font-size:10px;margin-bottom:3px}.metadata strong{font-weight:500;overflow-wrap:anywhere}pre{font:11px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--paper);margin:17px 0}table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}caption{text-align:left;padding:12px 16px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--line)}th{font-size:10px;font-weight:650;color:var(--muted);background:var(--bg)}td,th{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}tr:last-child td{border-bottom:0}.badge{display:inline-block;border:1px solid currentColor;border-radius:5px;padding:2px 7px;font-size:10px;font-weight:600;white-space:nowrap}.outcome-complete{color:#267157}.outcome-skipped,.outcome-inconclusive{color:var(--medium)}.outcome-failed{color:var(--high)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;overflow-wrap:anywhere}.operation-row{display:flex;gap:30px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:18px 0}.operation-row strong{font-size:17px;color:var(--ink);margin-right:5px}.settings{font-size:11px;color:var(--muted)}summary{cursor:pointer}.settings dl{display:grid;grid-template-columns:200px 1fr;padding:10px 15px;background:var(--paper)}dt,dd{margin:0;padding:3px}.finding{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--info);border-radius:7px;margin:15px 0}.severity-border-critical{border-left-color:var(--critical)}.severity-border-high{border-left-color:var(--high)}.severity-border-medium{border-left-color:var(--medium)}.severity-border-low{border-left-color:var(--low)}.finding summary{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding:18px 20px}.finding-id{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted)}.finding-title{font-size:14px;font-weight:650;flex:1;min-width:140px}.finding-body{border-top:1px solid var(--line);padding:21px 24px;font-size:13px}.finding-meta{display:flex;gap:22px;flex-wrap:wrap;font-size:10px;color:var(--muted)}.finding-body h3{font-size:10px;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted)}.evidence{background:var(--bg);border:1px solid var(--line);padding:16px 19px;border-radius:5px;color:var(--ink)}.preserve{white-space:pre-wrap;overflow-wrap:anywhere}.references{padding-left:16px;font-size:11px;overflow-wrap:anywhere}.references a{color:var(--low)}.next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.next-grid article{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:20px}.step{font-size:11px;color:var(--muted)}.next-grid h3{margin-top:12px}.next-grid p{font-size:12px;color:var(--muted)}.footer{padding:26px 48px;color:var(--muted);font-size:10px;display:flex;gap:30px;align-items:center;justify-content:space-between}.footer span{letter-spacing:1.5px;white-space:nowrap}.footer p{max-width:530px;margin:0}.muted{color:var(--muted)}.skip{position:absolute;left:-9999px}.skip:focus{left:15px;top:12px;z-index:2;background:var(--paper);padding:10px}
+@media(prefers-color-scheme:dark){:root{--bg:#101d27;--paper:#172732;--ink:#e4edf1;--muted:#a6b9c4;--line:#314652;--critical:#ff9fac;--high:#ffaa9d;--medium:#eac282;--low:#91c9e4;--info:#a4bac9}.hero{background:#081925}.outcome-complete{color:#8cdac0}}
+@media(max-width:700px){.masthead{padding:19px 20px}.masthead-meta{font-size:9px;text-align:right;max-width:118px;flex-shrink:0}.masthead{gap:15px}.brand{font-size:12px;letter-spacing:1.5px}.hero{margin:0 12px;padding:28px 24px 18px}.hero-grid{grid-template-columns:1fr;gap:25px}.hero-status{border-left:0;border-top:1px solid #385064;padding:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px}.hero-status p{grid-column:1/-1;margin-bottom:10px}.hero-status strong{font-size:18px}.hero-footer{font-size:9px}.section-nav{gap:15px;padding:20px 27px}.section{margin:0 12px;padding:26px 14px}.section-heading{align-items:start;flex-direction:column;gap:5px}.counts{gap:7px}.count-card{padding:10px 8px}.count-card span{font-size:9px}.count-card strong{font-size:25px}.metadata,.next-grid{grid-template-columns:1fr}.finding summary{padding:15px 12px;gap:8px}.finding-body{padding:18px 15px}.finding-meta{gap:10px}.footer{padding:24px 27px;display:block}.footer p{margin-top:10px}td,th{padding:10px;min-width:100px}.settings dl{grid-template-columns:1fr 1fr}h2{font-size:23px}}
+@media print{:root{color-scheme:light;--bg:#fff;--paper:#fff;--ink:#17232f;--muted:#566674;--line:#dbe2e6;--critical:#a91833;--high:#b22a32;--medium:#95620a;--low:#1d6687;--info:#456173}body{font-size:10pt}.hero{background:#fff;color:var(--ink);border:1px solid var(--line);padding:24px}.hero .eyebrow,.hero-status strong,.hero-status p,.hero-status .status-label,.target,.hero-footer{color:var(--ink)}.hero-grid{grid-template-columns:1fr 220px}h1{font-size:25pt}.section-nav,.skip{display:none}.section{padding:22px 12px}.finding{break-inside:avoid}.finding:not([open])>*{display:block}.settings:not([open])>*{display:block}details>summary{list-style:none}details::details-content{content-visibility:visible!important;display:block;height:auto}.footer{display:block}.counts{grid-template-columns:repeat(5,1fr)}.count-card strong{font-size:24px}.next-grid{grid-template-columns:repeat(3,1fr)}.table-wrap{overflow:visible}a{color:inherit}th{background:#fff}@page{margin:15mm}}
+</style>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to assessment</a>
+<header class="masthead">
+  <a class="brand" href="#overview"><span class="brand-symbol" aria-hidden="true">V</span> VULNSCANNER</a>
+  <div class="masthead-meta">SECURITY ASSESSMENT <span class="separator">/</span> v0.5.0</div>
+</header>
+<main>
+<section class="hero" id="overview" aria-labelledby="report-title">
+  <div class="eyebrow">AUTHORIZED TESTING · EVIDENCE FIRST</div>
+  <div class="hero-grid"><div>
+    <h1 id="report-title">A clearer view of<br>your attack surface.</h1>
+    <p class="target">http://127.0.0.1:45301</p>
+  </div><div class="hero-status">
+    <span class="status-label">ASSESSMENT COVERAGE</span>
+    <strong>Partial / unfinished</strong>
+    <p>9 of 10 selected checks completed</p>
+    <div class="status-label">HIGHEST REPORTED SEVERITY</div>
+    <strong class="severity-medium">Medium</strong>
+  </div></div>
+  <div class="hero-footer"><span>WEB ASSESSMENT</span><span>06 Oct 2026 · 12:54 UTC</span><span>Scan a67970bb-deed-4637-aff4-d3a043ba1f00</span></div>
+</section>
+<nav class="section-nav" aria-label="Report sections"><a href="#summary">Summary</a><a href="#coverage">Scope &amp; coverage</a><a href="#surface">Attack surface</a><a href="#findings">Findings</a><a href="#next">Next steps</a></nav>
+<section class="section" id="summary">
+  <div class="section-heading"><div><span class="eyebrow">01 / OVERVIEW</span><h2>Executive summary</h2></div><span class="small-label">22 recorded findings</span></div>
+  <p class="lead">22 findings recorded; highest reported severity: Medium. 9 of 10 selected checks completed. 9 findings need manual verification. Automated observations do not establish exploitability, compliance or complete security.</p>
+  <div class="counts" aria-label="Findings by severity"><div class="count-card severity-critical"><span>Critical</span><strong>0</strong></div><div class="count-card severity-high"><span>High</span><strong>0</strong></div><div class="count-card severity-medium"><span>Medium</span><strong>6</strong></div><div class="count-card severity-low"><span>Low</span><strong>10</strong></div><div class="count-card severity-info"><span>Info</span><strong>6</strong></div></div>
+  <div class="notice"><strong>Source context</strong><p>Measured synthetic loopback web fixture; not OWASP Juice Shop or a production assessment.</p><p>Imported scan data is not authenticated. A report does not independently verify ownership, authorization, exploitability or compliance.</p></div>
+</section>
+<section class="section" id="coverage">
+  <div class="section-heading"><div><span class="eyebrow">02 / BOUNDARIES</span><h2>Scope &amp; coverage</h2></div></div>
+  <div class="metadata"><div><span>Started · UTC</span><strong>2026-10-06T12:54:54.775305+00:00</strong></div><div><span>Ended · UTC</span><strong>2026-10-06T12:55:01.097752+00:00</strong></div><div><span>Declared approved addresses</span><pre>127.0.0.1</pre></div><div><span>Declared approved ports</span><pre>45301</pre></div></div>
+  <div class="table-wrap"><table><caption>Selected check outcomes</caption><thead><tr><th scope="col">Check</th><th scope="col">Outcome</th><th scope="col">Explanation</th></tr></thead><tbody><tr><td class="mono">cookies</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">cors</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">disclosure</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">files</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">headers</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">redirect</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">sqli</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">tls</td><td><span class="badge outcome-inconclusive">inconclusive</span></td><td>Verified TLS did not negotiate; certificate trust could not be established. Public TLS certificate metadata was unavailable. Locally disabled RC4/DES/3DES/export suites cannot be exhaustively tested; weak-cipher coverage is partial.</td></tr><tr><td class="mono">traversal</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">xss</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr></tbody></table></div>
+  <div class="operation-row"><span><strong>59</strong> HTTP operations</span><span><strong>0</strong> TCP operations</span><span><strong>5</strong> TLS operations</span></div>
+  <details class="settings"><summary>Recorded scan limits</summary><dl><dt>max_hosts</dt><dd>256</dd><dt>max_operations</dt><dd>5000</dd><dt>max_redirects</dt><dd>3</dd><dt>max_response_bytes</dt><dd>262144</dd><dt>rate_limit</dt><dd>10.0</dd><dt>respect_robots</dt><dd>False</dd><dt>scan_seconds</dt><dd>600.0</dd><dt>timeout</dt><dd>0.3</dd><dt>tls_expiry_days</dt><dd>30</dd><dt>weak_tls_probes</dt><dd>True</dd><dt>workers</dt><dd>10</dd></dl></details>
+</section>
+<section class="section" id="surface">
+  <div class="section-heading"><div><span class="eyebrow">03 / INVENTORY</span><h2>Attack surface</h2></div></div>
+  <div class="notice"><p>Network inventory was not supplied. Web coverage is limited to the recorded target and selected checks; there is no inferred crawl or endpoint inventory.</p></div>
+</section>
+<section class="section" id="findings">
+  <div class="section-heading"><div><span class="eyebrow">04 / EVIDENCE</span><h2>Detailed findings</h2></div><span class="small-label">Ordered by recorded severity</span></div>
+  
+  <details class="finding severity-border-medium" id="FINDING-001" open>
+    <summary><span class="finding-id">FINDING-001</span><span class="finding-title">Credentialed null Origin is accepted</span><span class="badge severity-medium">Medium</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">cors.null_origin</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">Sandboxed/non-hierarchical origins can serialize to null. Sensitive credentialed impact remains unverified because no authenticated request was made.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Origin null was accepted with credential allowance true.</pre>
+    <h3>Remediation</h3><p class="preserve">Reject null origins on private resources; use an explicit trusted origin allowlist and justify any public null-origin access.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin" rel="noopener noreferrer" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-medium" id="FINDING-002" open>
+    <summary><span class="finding-id">FINDING-002</span><span class="finding-title">Arbitrary Origin reflection observed</span><span class="badge severity-medium">Medium</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">cors.reflected_origin</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">Two independent reserved origins were echoed. Credentialed private-data impact depends on authenticated endpoints, cookies and browser behavior; [Needs manual verification]. Uncredentialed public endpoints may intentionally allow this.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Two random Origin values were echoed exactly.
+Credential allowance: true
+No cross-origin destination was contacted and no credentials were sent.</pre>
+    <h3>Remediation</h3><p class="preserve">Match serialized origins against an exact trusted allowlist. Reject unknown/null origins for private resources, enable credentials only where needed, and include Vary: Origin on dynamically selected origins.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin" rel="noopener noreferrer" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-medium" id="FINDING-003" open>
+    <summary><span class="finding-id">FINDING-003</span><span class="finding-title">Sensitive-file URL returned distinct success metadata</span><span class="badge severity-medium">Medium</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">files.sensitive_candidate</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A curated sensitive-file path returned HTTP 200 while its randomized same-directory/extension control returned not-found. No file content was downloaded, and private-data exposure is unconfirmed; [Needs manual verification].</p>
+    <h3>Evidence</h3><pre class="evidence">HEAD http://127.0.0.1:45301/.env
+HTTP status: 200
+HEAD candidate returned 200; corresponding nonexistent control returned 404.
+Non-HTML metadata observed. File contents, credentials and private data were not retrieved.</pre>
+    <h3>Remediation</h3><p class="preserve">Remove config, repository, database and backup files from public document roots. Deny dotfiles/config extensions in Nginx or Apache and store backups outside served directories. Have the owner verify the candidate before rotating any credentials.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-medium" id="FINDING-004" open>
+    <summary><span class="finding-id">FINDING-004</span><span class="finding-title">Query parameter controls an external HTTP redirect</span><span class="badge severity-medium">Medium</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">input.open_redirect</span><span>confirmed</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A unique reserved-domain marker supplied in an existing query field became the external Location destination of a redirect response. This establishes externally controlled redirect behavior; business impact and intentional redirect policy need review. The destination was never resolved or contacted.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 302
+Existing query field inspected: next
+A unique reserved-domain marker became the redirect hostname.
+Redirect following was disabled; no external service was contacted.</pre>
+    <h3>Remediation</h3><p class="preserve">Allow only approved relative paths or exact trusted origins. Parse and compare canonical scheme/host/port rather than substrings; reject scheme-relative destinations and credentials. For intentional external links, use a clear interstitial and avoid sensitive tokens in URLs.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/04-Testing_for_Client-side_URL_Redirect" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/04-Testing_for_Client-side_URL_Redirect</a></li><li><a href="https://cwe.mitre.org/data/definitions/601.html" rel="noopener noreferrer" target="_blank">https://cwe.mitre.org/data/definitions/601.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-medium" id="FINDING-005" open>
+    <summary><span class="finding-id">FINDING-005</span><span class="finding-title">Single quote introduced a database parser-error signal</span><span class="badge severity-medium">Medium</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">input.sql_error</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A database syntax-error signature appeared after a single-quote mutation and was absent from the baseline. This may reflect unsafe query construction or diagnostic handling; SQL injection and its impact are not confirmed. No query logic, data extraction or authentication bypass was attempted.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Existing query field inspected: id
+New signature families: MySQL syntax error
+A single quote was appended; raw error text and data were omitted.</pre>
+    <h3>Remediation</h3><p class="preserve">Use parameterized queries/prepared statements for all values; validate identifiers with explicit allowlists. Disable database exception details in client responses and review the affected query construction in source or an owned test environment.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection</a></li><li><a href="https://cwe.mitre.org/data/definitions/89.html" rel="noopener noreferrer" target="_blank">https://cwe.mitre.org/data/definitions/89.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-medium" id="FINDING-006" open>
+    <summary><span class="finding-id">FINDING-006</span><span class="finding-title">Parent-relative input returned the public canary</span><span class="badge severity-medium">Medium</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">input.traversal_canary</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A parent-relative filename returned the exact operator-supplied public canary where basename and missing controls did not. Filesystem escape and the application&#39;s intended boundary require manual verification. No operating-system or private file was requested.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Existing query field inspected: file
+Exact public-canary differential observed; token and file contents were omitted.
+Only a single ../ prefix and the approved public canary filename were used.</pre>
+    <h3>Remediation</h3><p class="preserve">Resolve paths against an explicit allowed base directory and reject any canonical result outside that base. Prefer opaque file IDs to filenames, reject absolute/dot-segment paths, and authorize every requested object. Verify the intended boundary using this non-secret canary.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include</a></li><li><a href="https://cwe.mitre.org/data/definitions/22.html" rel="noopener noreferrer" target="_blank">https://cwe.mitre.org/data/definitions/22.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-007" open>
+    <summary><span class="finding-id">FINDING-007</span><span class="finding-title">Cookie security attributes need review</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">cookies.attributes</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">Observed cookie attributes may be unsuitable for authentication cookies. Non-sensitive or intentionally script-readable cookies may legitimately differ; [Needs manual verification]. Missing SameSite does not disable modern browsers&#39; default Lax behavior.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Set-Cookie line 1: Secure absent; HttpOnly absent; SameSite absent or invalid
+Cookie name and value were omitted.</pre>
+    <h3>Remediation</h3><p class="preserve">For session cookies, set Secure, HttpOnly and an appropriate SameSite=Lax/Strict policy. SameSite=None requires Secure. For __Host- cookies, use HTTPS, Secure, Path=/ and no Domain. Do not set HttpOnly on deliberately script-readable anti-CSRF tokens.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-008" open>
+    <summary><span class="finding-id">FINDING-008</span><span class="finding-title">Dynamic CORS origin lacks Vary: Origin</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">cors.vary</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A reflected-origin response did not advertise Origin variation. Actual cache confusion depends on response cacheability and infrastructure.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Dynamic origin selection observed without consistent Vary: Origin.</pre>
+    <h3>Remediation</h3><p class="preserve">Add Vary: Origin to dynamic CORS responses and review intermediary cache keys and private-response caching.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin" rel="noopener noreferrer" target="_blank">https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-009" open>
+    <summary><span class="finding-id">FINDING-009</span><span class="finding-title">HTML comment contains a sensitive-information signal</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">disclosure.comment</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A bounded comment matched a sensitive-information category. It may be a dummy value or documentation; [Needs manual verification]. Comment content and potential secrets were not retained.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Matched category: secret-assignment-like text
+Comment text and values were omitted.</pre>
+    <h3>Remediation</h3><p class="preserve">Remove secrets/internal deployment details from served HTML, including comments. Have the owner verify the signal and rotate any confirmed exposed credentials.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-010" open>
+    <summary><span class="finding-id">FINDING-010</span><span class="finding-title">Source-map URL returned distinct success metadata</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">disclosure.source_map</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A referenced or conventional source-map URL returned non-HTML success distinct from a not-found control. Map contents, embedded source and private data were not downloaded; [Needs manual verification].</p>
+    <h3>Evidence</h3><pre class="evidence">HEAD http://127.0.0.1:45301/app.js.map
+HTTP status: 200
+HEAD map candidate succeeded while its randomized control was not found.
+No source-map body or embedded source code was retrieved.</pre>
+    <h3>Remediation</h3><p class="preserve">Omit public source maps containing private source/configuration from production builds, or serve them only to an authenticated debugging service. Public maps with intentionally public source may be acceptable.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-011" open>
+    <summary><span class="finding-id">FINDING-011</span><span class="finding-title">Directory listing structure observed</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">files.directory_index</span><span>confirmed</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">The response contains a conventional directory-index heading and multiple links. This establishes an index-style response; the sensitivity of listed files is unverified. No linked file was downloaded.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/uploads/
+HTTP status: 200
+Conventional directory-index heading and at least two links were observed.
+Listed filenames and response contents were omitted.</pre>
+    <h3>Remediation</h3><p class="preserve">Disable Nginx autoindex or Apache Options Indexes for non-public directories. Keep non-public files outside the web root and authorize deliberate file listings.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-012" open>
+    <summary><span class="finding-id">FINDING-012</span><span class="finding-title">Enforcing Content Security Policy is absent</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">headers.csp</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">This HTML response lacks a header-enforced CSP. CSP is defense in depth; absent CSP alone does not establish XSS. A meta-delivered policy has not been inspected by this header-only rule.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+No enforcing Content-Security-Policy header was observed.</pre>
+    <h3>Remediation</h3><p class="preserve">Deploy a tested CSP with nonce/hash-based script sources, object-src &#39;none&#39;, base-uri &#39;self&#39;, and frame-ancestors &#39;none&#39; or a justified allowlist. Use report-only during rollout, then enforce.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-secure-headers/" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-secure-headers/</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-013" open>
+    <summary><span class="finding-id">FINDING-013</span><span class="finding-title">No restrictive framing header was observed</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">headers.framing</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">Neither a valid X-Frame-Options policy nor a structurally restrictive CSP frame-ancestors directive was observed. Actual clickjacking impact needs manual verification.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+No supported restrictive framing control was found in response headers.</pre>
+    <h3>Remediation</h3><p class="preserve">Set CSP frame-ancestors &#39;none&#39; or &#39;self&#39; as required. For older clients, also use X-Frame-Options: DENY or SAMEORIGIN.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-secure-headers/" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-secure-headers/</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-014" open>
+    <summary><span class="finding-id">FINDING-014</span><span class="finding-title">X-Content-Type-Options missing or ineffective</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">headers.nosniff</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">MIME-sniffing protection was absent or invalid; exploitation depends on served content and browser behavior.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Expected a single nosniff value.</pre>
+    <h3>Remediation</h3><p class="preserve">Set X-Content-Type-Options: nosniff and correct Content-Type values at the app or proxy.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-secure-headers/" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-secure-headers/</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-015" open>
+    <summary><span class="finding-id">FINDING-015</span><span class="finding-title">Unencoded benign metacharacters reflected in HTML</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">input.html_reflection</span><span>needs-manual-verification</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">The exact inert marker and quote/angle/ampersand characters appeared in an HTML response. This is a reflection signal, not proof of executable XSS; context, sanitizers and effective CSP require manual verification.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Existing query field inspected: q
+An inert marker with unencoded metacharacters was reflected; no script or handler was sent/executed.</pre>
+    <h3>Remediation</h3><p class="preserve">Apply context-aware output encoding with framework autoescaping. Avoid unsafe HTML sinks, sanitize intentional HTML with a maintained allowlist sanitizer, and enforce a tested CSP. Review the actual output context in an owned test environment.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/01-Testing_for_Reflected_Cross_Site_Scripting" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/01-Testing_for_Reflected_Cross_Site_Scripting</a></li><li><a href="https://owasp.org/www-community/attacks/xss/" rel="noopener noreferrer" target="_blank">https://owasp.org/www-community/attacks/xss/</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-low" id="FINDING-016" open>
+    <summary><span class="finding-id">FINDING-016</span><span class="finding-title">HTTP response does not advertise an HTTPS upgrade</span><span class="badge severity-low">Low</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">tls.http_upgrade</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">The approved HTTP endpoint responded without a Location redirect to HTTPS. Whether plaintext access is intentional for an isolated lab or exposes sensitive data needs review; no credentials or response body were collected.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+HTTP response lacked a single HTTPS redirect destination.
+Response body was not read and redirects were not followed.</pre>
+    <h3>Remediation</h3><p class="preserve">On public deployments, redirect HTTP to HTTPS at the reverse proxy and use valid TLS. Add HSTS on the HTTPS origin after verifying coverage. Document any isolated HTTP-only lab exception.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_Transport_Layer_Security" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_Transport_Layer_Security</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-017" open>
+    <summary><span class="finding-id">FINDING-017</span><span class="finding-title">Technology-identifying headers are exposed</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">disclosure.tech_headers</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">Technology-identifying headers were present. Values may be generic, falsified or rewritten and are not evidence of an installed vulnerable version.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Present header names: server
+Header values were omitted.</pre>
+    <h3>Remediation</h3><p class="preserve">Remove unnecessary X-Powered-By/framework version headers and minimize proxy/server tokens. Patch software independently of banner hiding.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-018" open>
+    <summary><span class="finding-id">FINDING-018</span><span class="finding-title">Administrative route responded</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">files.admin_route</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">The curated administrative path returned success metadata. An accessible login page is normal; no authentication bypass or unauthorized administrative action was tested.</p>
+    <h3>Evidence</h3><pre class="evidence">HEAD http://127.0.0.1:45301/admin/
+HTTP status: 200
+HEAD /admin/ returned 200; body and authentication state were not inspected.</pre>
+    <h3>Remediation</h3><p class="preserve">Review the administrative surface, require strong authentication/MFA and authorization, and limit network access where appropriate. Do not treat URL obscurity as access control.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-019" open>
+    <summary><span class="finding-id">FINDING-019</span><span class="finding-title">robots.txt publishes URL inventory</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">files.public_inventory</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">The public metadata contains path references. robots.txt and sitemaps are discoverability controls, not access control. Paths were inventoried without visiting them or claiming they are vulnerabilities.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/robots.txt
+HTTP status: 200
+Bounded references observed: 1; approved-scope references: 1.
+Referenced paths/query values were not retained or fetched.</pre>
+    <h3>Remediation</h3><p class="preserve">Exclude private URLs from public sitemaps and apply authentication/authorization to private paths. Never rely on robots disallows to protect sensitive content.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-020" open>
+    <summary><span class="finding-id">FINDING-020</span><span class="finding-title">Potentially sensitive HTTP methods are advertised</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">headers.methods</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">The response advertises methods that require deliberate authorization. Advertisement does not prove the server accepts them or permits unauthenticated modification; no modifying request was sent.</p>
+    <h3>Evidence</h3><pre class="evidence">OPTIONS http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Advertised methods: DELETE, PUT, TRACE
+No PUT, DELETE or TRACE request was sent.</pre>
+    <h3>Remediation</h3><p class="preserve">Disable TRACE and unused verbs at the proxy; require authorization and CSRF controls for legitimate write endpoints. Verify allowed methods in an owned test environment.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/06-Test_HTTP_Methods" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/06-Test_HTTP_Methods</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-021" open>
+    <summary><span class="finding-id">FINDING-021</span><span class="finding-title">Permissions-Policy is absent</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">headers.permissions</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">No explicit browser-feature policy was observed. This is optional hardening; browser defaults still apply.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Permissions-Policy header was absent.</pre>
+    <h3>Remediation</h3><p class="preserve">Set only needed feature restrictions, for example Permissions-Policy: camera=(), microphone=(), geolocation=(), after reviewing app requirements.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-secure-headers/" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-secure-headers/</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-022" open>
+    <summary><span class="finding-id">FINDING-022</span><span class="finding-title">Explicit Referrer-Policy is absent</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">headers.referrer</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">No explicit policy was observed. Modern browser defaults offer protection; this is a hardening observation rather than proof of referrer leakage.</p>
+    <h3>Evidence</h3><pre class="evidence">GET http://127.0.0.1:45301/search?q=%5Bredacted%5D&amp;id=%5Bredacted%5D&amp;next=%5Bredacted%5D&amp;file=%5Bredacted%5D
+HTTP status: 200
+Referrer-Policy header was absent.</pre>
+    <h3>Remediation</h3><p class="preserve">Set Referrer-Policy: strict-origin-when-cross-origin, or no-referrer where required by privacy policy.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://owasp.org/www-project-secure-headers/" rel="noopener noreferrer" target="_blank">https://owasp.org/www-project-secure-headers/</a></li></ul>
+    </div>
+  </details>
+</section>
+<section class="section" id="next">
+  <div class="section-heading"><div><span class="eyebrow">05 / ACTION</span><h2>Recommended next steps</h2></div></div>
+  <div class="next-grid"><article><span class="step">01</span><h3>Validate &amp; prioritize</h3><p>Prioritize confirmed high-impact findings and verify potential issues before making remediation decisions.</p></article><article><span class="step">02</span><h3>Close coverage gaps</h3><p>Resolve skipped, inconclusive and failed checks. Rerun within the same authorized scope.</p></article><article><span class="step">03</span><h3>Retest &amp; assess</h3><p>Retest fixes and supplement automated checks with manual application assessment.</p></article></div>
+</section>
+</main>
+<footer class="footer"><span>VULNSCANNER / v0.5.0</span><p>Assessment metadata may be sensitive. Review and redact before sharing. Generated offline; no scripts, telemetry or remote assets.</p></footer>
+</body>
+</html>

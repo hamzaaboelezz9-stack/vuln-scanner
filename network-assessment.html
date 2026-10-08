@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;none&#39;; style-src &#39;sha256-eAD9XJyDeu1W5YhGQ1Rf5bwq+vhntlbPCyrWho29Go0=&#39;; img-src &#39;none&#39;; connect-src &#39;none&#39;; font-src &#39;none&#39;; object-src &#39;none&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>VulnScanner assessment — 127.0.0.1</title>
+<style>:root{color-scheme:light dark;--bg:#f3f5f6;--paper:#fff;--ink:#17232f;--muted:#566674;--line:#dbe2e6;--navy:#0e2335;--cyan:#83dbc9;--critical:#a91833;--high:#b22a32;--medium:#95620a;--low:#1d6687;--info:#456173}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-underline-offset:4px}a:focus-visible,summary:focus-visible{outline:3px solid #347fbb;outline-offset:4px}main,.masthead,.footer{max-width:1180px;margin:auto}.masthead{display:flex;align-items:center;justify-content:space-between;padding:26px 28px}.brand{font-size:14px;font-weight:800;letter-spacing:2px;text-decoration:none;display:flex;align-items:center;gap:13px}.brand-symbol{display:grid;place-items:center;width:31px;height:34px;border:2px solid currentColor;border-radius:6px 6px 15px 15px;font-size:16px}.masthead-meta,.small-label,.status-label{font-size:12px;color:var(--muted)}.masthead-meta{letter-spacing:1px}.separator{padding:0 12px;color:#8595a0}.hero{background:var(--navy);color:#f5fafb;border-radius:16px;padding:40px 46px 22px;margin:0 24px}.eyebrow{font-size:10px;font-weight:750;letter-spacing:2px}.hero .eyebrow{color:var(--cyan)}.hero-grid{display:grid;grid-template-columns:1fr 270px;gap:45px;padding:23px 0 30px}h1{font-size:clamp(30px,4vw,49px);font-weight:650;line-height:1.15;letter-spacing:-1.8px;margin:0 0 20px}.target{font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#cbd9e0;overflow-wrap:anywhere;margin:0}.hero-status{border-left:1px solid #385064;padding-left:28px;align-self:center}.hero-status strong{display:block;font-size:23px;font-weight:600}.hero-status p{font-size:12px;color:#b9cbd7;margin:2px 0 20px}.hero-status .status-label{font-size:9px;color:#a9c0ce;letter-spacing:1.6px}.hero-status .severity-medium{color:#ffcf77}.hero-status .severity-high,.hero-status .severity-critical{color:#ffb4b4}.hero-status .severity-info,.hero-status .severity-low{color:#8bddcb}.hero-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid #385064;padding-top:18px;font:10px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#a8c0cf;overflow-wrap:anywhere}.section-nav{display:flex;gap:30px;padding:23px 48px;border-bottom:1px solid var(--line);font-size:12px;flex-wrap:wrap}.section-nav a{text-decoration:none;color:var(--muted)}.section-nav a:hover{color:var(--ink)}.section{margin:0 24px;padding:34px 22px;border-bottom:1px solid var(--line);scroll-margin-top:1rem}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:21px}.section-heading .eyebrow{color:var(--muted)}h2{margin:5px 0 0;font-size:25px;letter-spacing:-.7px;font-weight:650}h3{font-size:14px;margin:24px 0 8px}p{margin:10px 0 14px}.lead{font-size:16px;max-width:890px}.counts{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:23px 0}.count-card{background:var(--paper);border:1px solid var(--line);border-top:3px solid currentColor;padding:15px 20px;border-radius:8px}.count-card span{font-size:11px;font-weight:600}.count-card strong{display:block;font-size:32px;line-height:1.3;font-weight:650;color:var(--ink)}.severity-critical{color:var(--critical)}.severity-high{color:var(--high)}.severity-medium{color:var(--medium)}.severity-low{color:var(--low)}.severity-info{color:var(--info)}.notice{background:var(--paper);border:1px solid var(--line);border-left:3px solid #4b7787;padding:16px 21px;border-radius:5px;font-size:12px;color:var(--muted)}.notice strong{color:var(--ink)}.notice p:last-child{margin-bottom:0}.metadata{display:grid;grid-template-columns:1fr 1fr;gap:19px 32px;font-size:12px;margin-bottom:24px}.metadata span{display:block;color:var(--muted);font-size:10px;margin-bottom:3px}.metadata strong{font-weight:500;overflow-wrap:anywhere}pre{font:11px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--paper);margin:17px 0}table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}caption{text-align:left;padding:12px 16px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--line)}th{font-size:10px;font-weight:650;color:var(--muted);background:var(--bg)}td,th{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}tr:last-child td{border-bottom:0}.badge{display:inline-block;border:1px solid currentColor;border-radius:5px;padding:2px 7px;font-size:10px;font-weight:600;white-space:nowrap}.outcome-complete{color:#267157}.outcome-skipped,.outcome-inconclusive{color:var(--medium)}.outcome-failed{color:var(--high)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;overflow-wrap:anywhere}.operation-row{display:flex;gap:30px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:18px 0}.operation-row strong{font-size:17px;color:var(--ink);margin-right:5px}.settings{font-size:11px;color:var(--muted)}summary{cursor:pointer}.settings dl{display:grid;grid-template-columns:200px 1fr;padding:10px 15px;background:var(--paper)}dt,dd{margin:0;padding:3px}.finding{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--info);border-radius:7px;margin:15px 0}.severity-border-critical{border-left-color:var(--critical)}.severity-border-high{border-left-color:var(--high)}.severity-border-medium{border-left-color:var(--medium)}.severity-border-low{border-left-color:var(--low)}.finding summary{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding:18px 20px}.finding-id{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted)}.finding-title{font-size:14px;font-weight:650;flex:1;min-width:140px}.finding-body{border-top:1px solid var(--line);padding:21px 24px;font-size:13px}.finding-meta{display:flex;gap:22px;flex-wrap:wrap;font-size:10px;color:var(--muted)}.finding-body h3{font-size:10px;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted)}.evidence{background:var(--bg);border:1px solid var(--line);padding:16px 19px;border-radius:5px;color:var(--ink)}.preserve{white-space:pre-wrap;overflow-wrap:anywhere}.references{padding-left:16px;font-size:11px;overflow-wrap:anywhere}.references a{color:var(--low)}.next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.next-grid article{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:20px}.step{font-size:11px;color:var(--muted)}.next-grid h3{margin-top:12px}.next-grid p{font-size:12px;color:var(--muted)}.footer{padding:26px 48px;color:var(--muted);font-size:10px;display:flex;gap:30px;align-items:center;justify-content:space-between}.footer span{letter-spacing:1.5px;white-space:nowrap}.footer p{max-width:530px;margin:0}.muted{color:var(--muted)}.skip{position:absolute;left:-9999px}.skip:focus{left:15px;top:12px;z-index:2;background:var(--paper);padding:10px}
+@media(prefers-color-scheme:dark){:root{--bg:#101d27;--paper:#172732;--ink:#e4edf1;--muted:#a6b9c4;--line:#314652;--critical:#ff9fac;--high:#ffaa9d;--medium:#eac282;--low:#91c9e4;--info:#a4bac9}.hero{background:#081925}.outcome-complete{color:#8cdac0}}
+@media(max-width:700px){.masthead{padding:19px 20px}.masthead-meta{font-size:9px;text-align:right;max-width:118px;flex-shrink:0}.masthead{gap:15px}.brand{font-size:12px;letter-spacing:1.5px}.hero{margin:0 12px;padding:28px 24px 18px}.hero-grid{grid-template-columns:1fr;gap:25px}.hero-status{border-left:0;border-top:1px solid #385064;padding:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px}.hero-status p{grid-column:1/-1;margin-bottom:10px}.hero-status strong{font-size:18px}.hero-footer{font-size:9px}.section-nav{gap:15px;padding:20px 27px}.section{margin:0 12px;padding:26px 14px}.section-heading{align-items:start;flex-direction:column;gap:5px}.counts{gap:7px}.count-card{padding:10px 8px}.count-card span{font-size:9px}.count-card strong{font-size:25px}.metadata,.next-grid{grid-template-columns:1fr}.finding summary{padding:15px 12px;gap:8px}.finding-body{padding:18px 15px}.finding-meta{gap:10px}.footer{padding:24px 27px;display:block}.footer p{margin-top:10px}td,th{padding:10px;min-width:100px}.settings dl{grid-template-columns:1fr 1fr}h2{font-size:23px}}
+@media print{:root{color-scheme:light;--bg:#fff;--paper:#fff;--ink:#17232f;--muted:#566674;--line:#dbe2e6;--critical:#a91833;--high:#b22a32;--medium:#95620a;--low:#1d6687;--info:#456173}body{font-size:10pt}.hero{background:#fff;color:var(--ink);border:1px solid var(--line);padding:24px}.hero .eyebrow,.hero-status strong,.hero-status p,.hero-status .status-label,.target,.hero-footer{color:var(--ink)}.hero-grid{grid-template-columns:1fr 220px}h1{font-size:25pt}.section-nav,.skip{display:none}.section{padding:22px 12px}.finding{break-inside:avoid}.finding:not([open])>*{display:block}.settings:not([open])>*{display:block}details>summary{list-style:none}details::details-content{content-visibility:visible!important;display:block;height:auto}.footer{display:block}.counts{grid-template-columns:repeat(5,1fr)}.count-card strong{font-size:24px}.next-grid{grid-template-columns:repeat(3,1fr)}.table-wrap{overflow:visible}a{color:inherit}th{background:#fff}@page{margin:15mm}}
+</style>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to assessment</a>
+<header class="masthead">
+  <a class="brand" href="#overview"><span class="brand-symbol" aria-hidden="true">V</span> VULNSCANNER</a>
+  <div class="masthead-meta">SECURITY ASSESSMENT <span class="separator">/</span> v0.5.0</div>
+</header>
+<main>
+<section class="hero" id="overview" aria-labelledby="report-title">
+  <div class="eyebrow">AUTHORIZED TESTING · EVIDENCE FIRST</div>
+  <div class="hero-grid"><div>
+    <h1 id="report-title">A clearer view of<br>your attack surface.</h1>
+    <p class="target">127.0.0.1</p>
+  </div><div class="hero-status">
+    <span class="status-label">ASSESSMENT COVERAGE</span>
+    <strong>Partial / unfinished</strong>
+    <p>3 of 4 selected checks completed</p>
+    <div class="status-label">HIGHEST REPORTED SEVERITY</div>
+    <strong class="severity-info">Info</strong>
+  </div></div>
+  <div class="hero-footer"><span>NET ASSESSMENT</span><span>06 Oct 2026 · 13:36 UTC</span><span>Scan ac2fb2d5-1714-49f8-b559-02e68ad464bd</span></div>
+</section>
+<nav class="section-nav" aria-label="Report sections"><a href="#summary">Summary</a><a href="#coverage">Scope &amp; coverage</a><a href="#surface">Attack surface</a><a href="#findings">Findings</a><a href="#next">Next steps</a></nav>
+<section class="section" id="summary">
+  <div class="section-heading"><div><span class="eyebrow">01 / OVERVIEW</span><h2>Executive summary</h2></div><span class="small-label">5 recorded findings</span></div>
+  <p class="lead">5 findings recorded; highest reported severity: Info. 3 of 4 selected checks completed. 0 findings need manual verification. Automated observations do not establish exploitability, compliance or complete security.</p>
+  <div class="counts" aria-label="Findings by severity"><div class="count-card severity-critical"><span>Critical</span><strong>0</strong></div><div class="count-card severity-high"><span>High</span><strong>0</strong></div><div class="count-card severity-medium"><span>Medium</span><strong>0</strong></div><div class="count-card severity-low"><span>Low</span><strong>0</strong></div><div class="count-card severity-info"><span>Info</span><strong>5</strong></div></div>
+  <div class="notice"><strong>Source context</strong><p>Measured synthetic loopback TCP fixture; banners are simulated, not verified installed services. No live NVD or Juice Shop assessment.</p><p>Imported scan data is not authenticated. A report does not independently verify ownership, authorization, exploitability or compliance.</p></div>
+</section>
+<section class="section" id="coverage">
+  <div class="section-heading"><div><span class="eyebrow">02 / BOUNDARIES</span><h2>Scope &amp; coverage</h2></div></div>
+  <div class="metadata"><div><span>Started · UTC</span><strong>2026-10-06T13:36:31.667081+00:00</strong></div><div><span>Ended · UTC</span><strong>2026-10-06T13:36:31.886267+00:00</strong></div><div><span>Declared approved addresses</span><pre>127.0.0.1</pre></div><div><span>Declared approved ports</span><pre>38085, 52881, 60907</pre></div></div>
+  <div class="table-wrap"><table><caption>Selected check outcomes</caption><thead><tr><th scope="col">Check</th><th scope="col">Outcome</th><th scope="col">Explanation</th></tr></thead><tbody><tr><td class="mono">cves</td><td><span class="badge outcome-skipped">skipped</span></td><td>No NVD cache configured; no external lookup was made.</td></tr><tr><td class="mono">discovery</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">ports</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr><tr><td class="mono">services</td><td><span class="badge outcome-complete">complete</span></td><td>Completed selected check</td></tr></tbody></table></div>
+  <div class="operation-row"><span><strong>0</strong> HTTP operations</span><span><strong>3</strong> TCP operations</span><span><strong>0</strong> TLS operations</span></div>
+  <details class="settings"><summary>Recorded scan limits</summary><dl><dt>max_hosts</dt><dd>256</dd><dt>max_operations</dt><dd>5000</dd><dt>max_redirects</dt><dd>3</dd><dt>max_response_bytes</dt><dd>262144</dd><dt>network_banner_seconds</dt><dd>0.2</dd><dt>rate_limit</dt><dd>10.0</dd><dt>respect_robots</dt><dd>False</dd><dt>scan_seconds</dt><dd>600.0</dd><dt>timeout</dt><dd>0.5</dd><dt>tls_expiry_days</dt><dd>30</dd><dt>weak_tls_probes</dt><dd>True</dd><dt>workers</dt><dd>10</dd></dl></details>
+</section>
+<section class="section" id="surface">
+  <div class="section-heading"><div><span class="eyebrow">03 / INVENTORY</span><h2>Attack surface</h2></div></div>
+  
+  <p>3 of 3 host/port pairs observed. Passive advertisements are unverified. Timeouts do not prove a closed port or an absent host.</p>
+  <p class="small-label">Collection incomplete: False · Collection failed: False · Application bytes transmitted: 0</p>
+  <div class="table-wrap"><table><caption>Per-host socket outcomes</caption><thead><tr><th scope="col">Address</th><th scope="col">Response</th><th scope="col">State counts</th></tr></thead><tbody><tr><td class="mono">127.0.0.1</td><td>observed-or-middlebox</td><td>open: 2; connection-refused: 1; no-response: 0; unreachable: 0; local-or-transport-error: 0</td></tr></tbody></table></div>
+  <div class="table-wrap"><table><caption>Open and uncertain endpoints</caption><thead><tr><th scope="col">Endpoint</th><th scope="col">Socket state</th><th scope="col">Advertised identity</th><th scope="col">Greeting</th></tr></thead><tbody><tr><td class="mono">tcp://127.0.0.1:52881</td><td>open</td><td>smtp<span class="muted"> · unverified</span></td><td>complete-line-or-eof</td></tr><tr><td class="mono">tcp://127.0.0.1:60907</td><td>open</td><td>ssh / openssh / 9.8p1<span class="muted"> · unverified</span></td><td>complete-line-or-eof</td></tr></tbody></table></div>
+  <p class="small-label">Omitted inventory records: 0 open · 0 uncertain.</p>
+  
+</section>
+<section class="section" id="findings">
+  <div class="section-heading"><div><span class="eyebrow">04 / EVIDENCE</span><h2>Detailed findings</h2></div><span class="small-label">Ordered by recorded severity</span></div>
+  
+  <details class="finding severity-border-info" id="FINDING-001" open>
+    <summary><span class="finding-id">FINDING-001</span><span class="finding-title">TCP listener accepted a connection</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">network.open_port</span><span>confirmed</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A TCP handshake completed on this approved address and port. An open listener alone is not a vulnerability or evidence of an unauthenticated application action. Service identity is assessed separately.</p>
+    <h3>Evidence</h3><pre class="evidence">TCP tcp://127.0.0.1:52881
+HTTP status: Not applicable / unavailable
+TCP connect succeeded.
+No application bytes were transmitted.</pre>
+    <h3>Remediation</h3><p class="preserve">Review whether the listener is required, bind private services to the intended interface, restrict ingress with host/network firewalls, and enforce service authentication and patching.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://nmap.org/book/port-scanning.html" rel="noopener noreferrer" target="_blank">https://nmap.org/book/port-scanning.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-002" open>
+    <summary><span class="finding-id">FINDING-002</span><span class="finding-title">TCP listener accepted a connection</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">network.open_port</span><span>confirmed</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A TCP handshake completed on this approved address and port. An open listener alone is not a vulnerability or evidence of an unauthenticated application action. Service identity is assessed separately.</p>
+    <h3>Evidence</h3><pre class="evidence">TCP tcp://127.0.0.1:60907
+HTTP status: Not applicable / unavailable
+TCP connect succeeded.
+No application bytes were transmitted.</pre>
+    <h3>Remediation</h3><p class="preserve">Review whether the listener is required, bind private services to the intended interface, restrict ingress with host/network firewalls, and enforce service authentication and patching.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://nmap.org/book/port-scanning.html" rel="noopener noreferrer" target="_blank">https://nmap.org/book/port-scanning.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-003" open>
+    <summary><span class="finding-id">FINDING-003</span><span class="finding-title">Passive service identity advertised</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">network.service_identity</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A greeting matched a bounded built-in signature. Banners can be spoofed and distribution packages may backport fixes. No login, HTTP request, database query or service command was sent. [Needs manual verification] for installed product/version and vulnerability applicability.</p>
+    <h3>Evidence</h3><pre class="evidence">TCP tcp://127.0.0.1:52881
+HTTP status: Not applicable / unavailable
+Advertised protocol: smtp</pre>
+    <h3>Remediation</h3><p class="preserve">Verify installed package versions and vendor patch/backport status through authorized administrative inventory. Restrict unnecessary greeting detail, while prioritizing patching and access control over banner hiding.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://nmap.org/book/port-scanning.html" rel="noopener noreferrer" target="_blank">https://nmap.org/book/port-scanning.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-004" open>
+    <summary><span class="finding-id">FINDING-004</span><span class="finding-title">Passive service identity advertised</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">network.service_identity</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A greeting matched a bounded built-in signature. Banners can be spoofed and distribution packages may backport fixes. No login, HTTP request, database query or service command was sent. [Needs manual verification] for installed product/version and vulnerability applicability.</p>
+    <h3>Evidence</h3><pre class="evidence">TCP tcp://127.0.0.1:60907
+HTTP status: Not applicable / unavailable
+Advertised protocol: ssh
+Advertised product: openssh
+Advertised software version: 9.8p1</pre>
+    <h3>Remediation</h3><p class="preserve">Verify installed package versions and vendor patch/backport status through authorized administrative inventory. Restrict unnecessary greeting detail, while prioritizing patching and access control over banner hiding.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://nmap.org/book/port-scanning.html" rel="noopener noreferrer" target="_blank">https://nmap.org/book/port-scanning.html</a></li></ul>
+    </div>
+  </details>
+  <details class="finding severity-border-info" id="FINDING-005" open>
+    <summary><span class="finding-id">FINDING-005</span><span class="finding-title">TCP response observed</span><span class="badge severity-info">Info</span></summary>
+    <div class="finding-body"><div class="finding-meta"><span class="mono">network.tcp_response</span><span>observation</span><span>CVSS v3.1: Not scored</span></div>
+    <p class="small-label">Impact needs verification; no numeric CVSS score is inferred.</p>
+    <h3>Description</h3><p class="preserve">A connect succeeded or was refused. This establishes a response from the address/path, possibly a firewall or middlebox, not proof of end-host identity. No ICMP/raw SYN packet or application command was sent.</p>
+    <h3>Evidence</h3><pre class="evidence">TCP tcp://127.0.0.1:38085
+HTTP status: Not applicable / unavailable
+TCP outcome: connection-refused
+Every authorized address remains eligible for selected-port probing regardless of this response.</pre>
+    <h3>Remediation</h3><p class="preserve">Maintain an accurate asset inventory and limit network exposure to the intended trust zones. Verify address ownership and any middlebox responses with the operator.</p>
+    <h3>References</h3><ul class="references"><li><a href="https://nmap.org/book/port-scanning.html" rel="noopener noreferrer" target="_blank">https://nmap.org/book/port-scanning.html</a></li></ul>
+    </div>
+  </details>
+</section>
+<section class="section" id="next">
+  <div class="section-heading"><div><span class="eyebrow">05 / ACTION</span><h2>Recommended next steps</h2></div></div>
+  <div class="next-grid"><article><span class="step">01</span><h3>Validate &amp; prioritize</h3><p>Prioritize confirmed high-impact findings and verify potential issues before making remediation decisions.</p></article><article><span class="step">02</span><h3>Close coverage gaps</h3><p>Resolve skipped, inconclusive and failed checks. Rerun within the same authorized scope.</p></article><article><span class="step">03</span><h3>Retest &amp; assess</h3><p>Retest fixes and supplement automated checks with manual application assessment.</p></article></div>
+</section>
+</main>
+<footer class="footer"><span>VULNSCANNER / v0.5.0</span><p>Assessment metadata may be sensitive. Review and redact before sharing. Generated offline; no scripts, telemetry or remote assets.</p></footer>
+</body>
+</html>

@@ -1,0 +1,181 @@
+{
+  "scanner_version": "0.6.0",
+  "purpose": "Measured installed VulnScanner 0.6.0 CLI against an owned synthetic loopback application; not OWASP Juice Shop or a production assessment. Context annotation added offline; observed findings and scan metadata unchanged.",
+  "schema": "vulnscanner.result.v1",
+  "scan_id": "de5b6d91-d408-4f8f-b2b1-e73ebb54dcbe",
+  "target": "http://127.0.0.1:44685",
+  "mode": "web",
+  "started_at": "2026-10-07T16:12:44.003544+00:00",
+  "ended_at": "2026-10-07T16:12:44.216801+00:00",
+  "counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 4,
+    "info": 2
+  },
+  "findings": [
+    {
+      "rule_id": "cookies.attributes",
+      "title": "Cookie security attributes need review",
+      "severity": "low",
+      "confidence": "needs-manual-verification",
+      "description": "Observed cookie attributes may be unsuitable for authentication cookies. Non-sensitive or intentionally script-readable cookies may legitimately differ; [Needs manual verification]. Missing SameSite does not disable modern browsers' default Lax behavior.",
+      "evidence": {
+        "method": "GET",
+        "endpoint": "http://127.0.0.1:44685/",
+        "status_code": 200,
+        "observations": [
+          "Set-Cookie line 1: Secure absent; HttpOnly absent; SameSite absent or invalid",
+          "Cookie name and value were omitted."
+        ]
+      },
+      "remediation": "For session cookies, set Secure, HttpOnly and an appropriate SameSite=Lax/Strict policy. SameSite=None requires Secure. For __Host- cookies, use HTTPS, Secure, Path=/ and no Domain. Do not set HttpOnly on deliberately script-readable anti-CSRF tokens.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+      ],
+      "cvss": null
+    },
+    {
+      "rule_id": "headers.csp",
+      "title": "Enforcing Content Security Policy is absent",
+      "severity": "low",
+      "confidence": "observation",
+      "description": "This HTML response lacks a header-enforced CSP. CSP is defense in depth; absent CSP alone does not establish XSS. A meta-delivered policy has not been inspected by this header-only rule.",
+      "evidence": {
+        "method": "GET",
+        "endpoint": "http://127.0.0.1:44685/",
+        "status_code": 200,
+        "observations": [
+          "No enforcing Content-Security-Policy header was observed."
+        ]
+      },
+      "remediation": "Deploy a tested CSP with nonce/hash-based script sources, object-src 'none', base-uri 'self', and frame-ancestors 'none' or a justified allowlist. Use report-only during rollout, then enforce.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ],
+      "cvss": null
+    },
+    {
+      "rule_id": "headers.framing",
+      "title": "No restrictive framing header was observed",
+      "severity": "low",
+      "confidence": "observation",
+      "description": "Neither a valid X-Frame-Options policy nor a structurally restrictive CSP frame-ancestors directive was observed. Actual clickjacking impact needs manual verification.",
+      "evidence": {
+        "method": "GET",
+        "endpoint": "http://127.0.0.1:44685/",
+        "status_code": 200,
+        "observations": [
+          "No supported restrictive framing control was found in response headers."
+        ]
+      },
+      "remediation": "Set CSP frame-ancestors 'none' or 'self' as required. For older clients, also use X-Frame-Options: DENY or SAMEORIGIN.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ],
+      "cvss": null
+    },
+    {
+      "rule_id": "headers.nosniff",
+      "title": "X-Content-Type-Options missing or ineffective",
+      "severity": "low",
+      "confidence": "observation",
+      "description": "MIME-sniffing protection was absent or invalid; exploitation depends on served content and browser behavior.",
+      "evidence": {
+        "method": "GET",
+        "endpoint": "http://127.0.0.1:44685/",
+        "status_code": 200,
+        "observations": [
+          "Expected a single nosniff value."
+        ]
+      },
+      "remediation": "Set X-Content-Type-Options: nosniff and correct Content-Type values at the app or proxy.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ],
+      "cvss": null
+    },
+    {
+      "rule_id": "headers.permissions",
+      "title": "Permissions-Policy is absent",
+      "severity": "info",
+      "confidence": "observation",
+      "description": "No explicit browser-feature policy was observed. This is optional hardening; browser defaults still apply.",
+      "evidence": {
+        "method": "GET",
+        "endpoint": "http://127.0.0.1:44685/",
+        "status_code": 200,
+        "observations": [
+          "Permissions-Policy header was absent."
+        ]
+      },
+      "remediation": "Set only needed feature restrictions, for example Permissions-Policy: camera=(), microphone=(), geolocation=(), after reviewing app requirements.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ],
+      "cvss": null
+    },
+    {
+      "rule_id": "headers.referrer",
+      "title": "Explicit Referrer-Policy is absent",
+      "severity": "info",
+      "confidence": "observation",
+      "description": "No explicit policy was observed. Modern browser defaults offer protection; this is a hardening observation rather than proof of referrer leakage.",
+      "evidence": {
+        "method": "GET",
+        "endpoint": "http://127.0.0.1:44685/",
+        "status_code": 200,
+        "observations": [
+          "Referrer-Policy header was absent."
+        ]
+      },
+      "remediation": "Set Referrer-Policy: strict-origin-when-cross-origin, or no-referrer where required by privacy policy.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ],
+      "cvss": null
+    }
+  ],
+  "coverage": [
+    {
+      "check": "cookies",
+      "status": "complete",
+      "reason": ""
+    },
+    {
+      "check": "headers",
+      "status": "complete",
+      "reason": ""
+    }
+  ],
+  "operations": {
+    "HTTP": 3,
+    "TCP": 0,
+    "TLS": 0
+  },
+  "limits": {
+    "workers": 10,
+    "rate_limit": 10.0,
+    "timeout": 10.0,
+    "max_hosts": 256,
+    "max_operations": 5000,
+    "scan_seconds": 600.0,
+    "max_response_bytes": 262144,
+    "max_redirects": 3,
+    "respect_robots": false,
+    "tls_expiry_days": 30,
+    "weak_tls_probes": true,
+    "network_banner_seconds": 0.5
+  },
+  "attack_surface": null,
+  "approved_scope": {
+    "addresses": [
+      "127.0.0.1"
+    ],
+    "ports": [
+      44685
+    ]
+  },
+  "runner_exit_code": 0
+}

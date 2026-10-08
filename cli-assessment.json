@@ -1,0 +1,366 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "VulnScanner",
+          "version": "0.6.0",
+          "rules": [
+            {
+              "id": "cookies.attributes",
+              "shortDescription": {
+                "text": "Cookie security attributes need review"
+              },
+              "help": {
+                "text": "For session cookies, set Secure, HttpOnly and an appropriate SameSite=Lax/Strict policy. SameSite=None requires Secure. For __Host- cookies, use HTTPS, Secure, Path=/ and no Domain. Do not set HttpOnly on deliberately script-readable anti-CSRF tokens."
+              }
+            },
+            {
+              "id": "headers.csp",
+              "shortDescription": {
+                "text": "Enforcing Content Security Policy is absent"
+              },
+              "help": {
+                "text": "Deploy a tested CSP with nonce/hash-based script sources, object-src 'none', base-uri 'self', and frame-ancestors 'none' or a justified allowlist. Use report-only during rollout, then enforce."
+              }
+            },
+            {
+              "id": "headers.framing",
+              "shortDescription": {
+                "text": "No restrictive framing header was observed"
+              },
+              "help": {
+                "text": "Set CSP frame-ancestors 'none' or 'self' as required. For older clients, also use X-Frame-Options: DENY or SAMEORIGIN."
+              }
+            },
+            {
+              "id": "headers.nosniff",
+              "shortDescription": {
+                "text": "X-Content-Type-Options missing or ineffective"
+              },
+              "help": {
+                "text": "Set X-Content-Type-Options: nosniff and correct Content-Type values at the app or proxy."
+              }
+            },
+            {
+              "id": "headers.permissions",
+              "shortDescription": {
+                "text": "Permissions-Policy is absent"
+              },
+              "help": {
+                "text": "Set only needed feature restrictions, for example Permissions-Policy: camera=(), microphone=(), geolocation=(), after reviewing app requirements."
+              }
+            },
+            {
+              "id": "headers.referrer",
+              "shortDescription": {
+                "text": "Explicit Referrer-Policy is absent"
+              },
+              "help": {
+                "text": "Set Referrer-Policy: strict-origin-when-cross-origin, or no-referrer where required by privacy policy."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "cookies.attributes",
+          "ruleIndex": 0,
+          "level": "warning",
+          "kind": "fail",
+          "message": {
+            "text": "Cookie security attributes need review: Observed cookie attributes may be unsuitable for authentication cookies. Non-sensitive or intentionally script-readable cookies may legitimately differ; [Needs manual verification]. Missing SameSite does not disable modern browsers' default Lax behavior."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "79d4415e129d0db70bd7da8c723984eb07743f583e9cbc3a1a65116f1e92988a"
+          },
+          "properties": {
+            "severity": "low",
+            "confidence": "needs-manual-verification",
+            "evidence": {
+              "method": "GET",
+              "endpoint": "http://127.0.0.1:44685/",
+              "status_code": 200,
+              "observations": [
+                "Set-Cookie line 1: Secure absent; HttpOnly absent; SameSite absent or invalid",
+                "Cookie name and value were omitted."
+              ]
+            },
+            "remediation": "For session cookies, set Secure, HttpOnly and an appropriate SameSite=Lax/Strict policy. SameSite=None requires Secure. For __Host- cookies, use HTTPS, Secure, Path=/ and no Domain. Do not set HttpOnly on deliberately script-readable anti-CSRF tokens.",
+            "references": [
+              "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "http://127.0.0.1:44685/"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "headers.csp",
+          "ruleIndex": 1,
+          "level": "warning",
+          "kind": "fail",
+          "message": {
+            "text": "Enforcing Content Security Policy is absent: This HTML response lacks a header-enforced CSP. CSP is defense in depth; absent CSP alone does not establish XSS. A meta-delivered policy has not been inspected by this header-only rule."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "ebc23dd45971f1ba784dfff847873b1a668c65cdbd5248e5d346cfc2ec6c73f4"
+          },
+          "properties": {
+            "severity": "low",
+            "confidence": "observation",
+            "evidence": {
+              "method": "GET",
+              "endpoint": "http://127.0.0.1:44685/",
+              "status_code": 200,
+              "observations": [
+                "No enforcing Content-Security-Policy header was observed."
+              ]
+            },
+            "remediation": "Deploy a tested CSP with nonce/hash-based script sources, object-src 'none', base-uri 'self', and frame-ancestors 'none' or a justified allowlist. Use report-only during rollout, then enforce.",
+            "references": [
+              "https://owasp.org/www-project-secure-headers/"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "http://127.0.0.1:44685/"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "headers.framing",
+          "ruleIndex": 2,
+          "level": "warning",
+          "kind": "fail",
+          "message": {
+            "text": "No restrictive framing header was observed: Neither a valid X-Frame-Options policy nor a structurally restrictive CSP frame-ancestors directive was observed. Actual clickjacking impact needs manual verification."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "2adf6ab8afe082eb6850cd2605e8455f27179247d52cbe60ee5c6fb4b7c92a4f"
+          },
+          "properties": {
+            "severity": "low",
+            "confidence": "observation",
+            "evidence": {
+              "method": "GET",
+              "endpoint": "http://127.0.0.1:44685/",
+              "status_code": 200,
+              "observations": [
+                "No supported restrictive framing control was found in response headers."
+              ]
+            },
+            "remediation": "Set CSP frame-ancestors 'none' or 'self' as required. For older clients, also use X-Frame-Options: DENY or SAMEORIGIN.",
+            "references": [
+              "https://owasp.org/www-project-secure-headers/"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "http://127.0.0.1:44685/"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "headers.nosniff",
+          "ruleIndex": 3,
+          "level": "warning",
+          "kind": "fail",
+          "message": {
+            "text": "X-Content-Type-Options missing or ineffective: MIME-sniffing protection was absent or invalid; exploitation depends on served content and browser behavior."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "c95cfb0db8402aa722486a4e3c8fa8cfd4c1ff72b918c1b21855db9f1b09b964"
+          },
+          "properties": {
+            "severity": "low",
+            "confidence": "observation",
+            "evidence": {
+              "method": "GET",
+              "endpoint": "http://127.0.0.1:44685/",
+              "status_code": 200,
+              "observations": [
+                "Expected a single nosniff value."
+              ]
+            },
+            "remediation": "Set X-Content-Type-Options: nosniff and correct Content-Type values at the app or proxy.",
+            "references": [
+              "https://owasp.org/www-project-secure-headers/"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "http://127.0.0.1:44685/"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "headers.permissions",
+          "ruleIndex": 4,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "Permissions-Policy is absent: No explicit browser-feature policy was observed. This is optional hardening; browser defaults still apply."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "952d3b2ccc604a4ed24c330224a9776942aa320070df2cb3a2b9340e7a06162e"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "observation",
+            "evidence": {
+              "method": "GET",
+              "endpoint": "http://127.0.0.1:44685/",
+              "status_code": 200,
+              "observations": [
+                "Permissions-Policy header was absent."
+              ]
+            },
+            "remediation": "Set only needed feature restrictions, for example Permissions-Policy: camera=(), microphone=(), geolocation=(), after reviewing app requirements.",
+            "references": [
+              "https://owasp.org/www-project-secure-headers/"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "http://127.0.0.1:44685/"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "headers.referrer",
+          "ruleIndex": 5,
+          "level": "note",
+          "kind": "informational",
+          "message": {
+            "text": "Explicit Referrer-Policy is absent: No explicit policy was observed. Modern browser defaults offer protection; this is a hardening observation rather than proof of referrer leakage."
+          },
+          "partialFingerprints": {
+            "vulnscannerIssue/v1": "4e7f88819d9ad321119e0a13be1d7d9cbf08936eb3a23049cd0429ab5a398402"
+          },
+          "properties": {
+            "severity": "info",
+            "confidence": "observation",
+            "evidence": {
+              "method": "GET",
+              "endpoint": "http://127.0.0.1:44685/",
+              "status_code": 200,
+              "observations": [
+                "Referrer-Policy header was absent."
+              ]
+            },
+            "remediation": "Set Referrer-Policy: strict-origin-when-cross-origin, or no-referrer where required by privacy policy.",
+            "references": [
+              "https://owasp.org/www-project-secure-headers/"
+            ],
+            "cvss": null
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "http://127.0.0.1:44685/"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "vulnscanner": {
+          "scanId": "de5b6d91-d408-4f8f-b2b1-e73ebb54dcbe",
+          "target": "http://127.0.0.1:44685",
+          "mode": "web",
+          "purpose": "Measured installed VulnScanner 0.6.0 CLI against an owned synthetic loopback application; not OWASP Juice Shop or a production assessment. Context annotation added offline; observed findings and scan metadata unchanged.",
+          "startedAt": "2026-10-07T16:12:44.003544+00:00",
+          "endedAt": "2026-10-07T16:12:44.216801+00:00",
+          "coverageComplete": true,
+          "highestReportedSeverity": "Low",
+          "severityCounts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 4,
+            "info": 2
+          },
+          "coverageCounts": {
+            "complete": 2,
+            "skipped": 0,
+            "inconclusive": 0,
+            "failed": 0
+          },
+          "coverage": [
+            {
+              "check": "cookies",
+              "status": "complete",
+              "reason": ""
+            },
+            {
+              "check": "headers",
+              "status": "complete",
+              "reason": ""
+            }
+          ],
+          "operations": {
+            "HTTP": 3,
+            "TCP": 0,
+            "TLS": 0
+          },
+          "limits": {
+            "max_hosts": 256,
+            "max_operations": 5000,
+            "max_redirects": 3,
+            "max_response_bytes": 262144,
+            "network_banner_seconds": 0.5,
+            "rate_limit": 10.0,
+            "respect_robots": false,
+            "scan_seconds": 600.0,
+            "timeout": 10.0,
+            "tls_expiry_days": 30,
+            "weak_tls_probes": true,
+            "workers": 10
+          },
+          "approvedScope": {
+            "addresses": [
+              "127.0.0.1"
+            ],
+            "ports": [
+              44685
+            ]
+          },
+          "attackSurface": null
+        }
+      }
+    }
+  ]
+}
